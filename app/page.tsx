@@ -1,65 +1,100 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useState, useEffect } from "react";
+
+export default function ComingSoonPage() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="relative min-h-screen bg-[#0a0804] overflow-hidden flex flex-col items-center justify-center px-6">
+      {/* Noise texture overlay */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.035]"
+        style={{
+          backgroundImage:
+            "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
+          backgroundSize: "256px",
+        }}
+      />
+
+      {/* Radial amber glow */}
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+        <div className="w-[900px] h-[900px] rounded-full bg-amber-800/10 blur-[160px]" />
+      </div>
+
+      {/* Top decorative line */}
+      <div
+        className={`absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-700/40 to-transparent transition-opacity duration-1000 ${mounted ? "opacity-100" : "opacity-0"}`}
+      />
+
+      {/* Corner accents */}
+      <div className="absolute top-8 left-8 w-12 h-12 border-l border-t border-amber-700/30" />
+      <div className="absolute top-8 right-8 w-12 h-12 border-r border-t border-amber-700/30" />
+      <div className="absolute bottom-8 left-8 w-12 h-12 border-l border-b border-amber-700/30" />
+      <div className="absolute bottom-8 right-8 w-12 h-12 border-r border-b border-amber-700/30" />
+
+      {/* Floating orbs */}
+      <div className="pointer-events-none absolute top-1/4 left-[10%] w-2 h-2 rounded-full bg-amber-500/20 animate-float-slow" />
+      <div className="pointer-events-none absolute top-2/3 right-[15%] w-1 h-1 rounded-full bg-amber-400/30 animate-float-medium" />
+      <div className="pointer-events-none absolute top-1/2 left-[20%] w-1.5 h-1.5 rounded-full bg-amber-600/20 animate-float-fast" />
+
+      {/* Content */}
+      <div className="relative z-10 flex flex-col items-center text-center max-w-4xl mx-auto">
+        {/* Eyebrow label */}
+        <div
+          className={` inline-flex items-center gap-1 transition-all mt-2 duration-700 delay-100 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+        >
+          <div className="h-px w-10 bg-amber-600/60" />
+          <span className="text-xs tracking-[0.35em] uppercase text-amber-600/80 font-semibold">
+            Something extraordinary
+          </span>
+          <div className="h-px w-10 bg-amber-600/60" />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+
+        {/* Main heading */}
+        <h1
+          className={`font-display text-7xl md:text-[9rem] lg:text-[11rem] font-bold text-amber-50 leading-none tracking-tighter  transition-all duration-700 delay-200 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+        >
+          Coming
+        </h1>
+        <h1
+          className={`font-display text-7xl md:text-[9rem] lg:text-[11rem] font-bold leading-none tracking-tighter mb-5 transition-all duration-700 delay-300 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+          style={{
+            WebkitTextStroke: "1px rgba(217,119,6,0.5)",
+            color: "transparent",
+          }}
+        >
+          Soon
+        </h1>
+
+        {/* Subtitle */}
+        <p
+          className={`text-amber-100/40 text-base md:text-lg max-w-md leading-relaxed mb-16 font-light transition-all duration-700 delay-[400ms] ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+        >
+          We're crafting something that will change the way you experience the
+          world. Be the first to know when we launch.
+        </p>
+
+        {/* Countdown */}
+      </div>
+
+      {/* Bottom bar */}
+      <div
+        className={`absolute bottom-8 left-0 right-0 flex items-center justify-center transition-all duration-700 delay-700 ${mounted ? "opacity-100" : "opacity-0"}`}
+      >
+        <p className="text-amber-50/15 text-xs tracking-[0.25em] uppercase">
+          © 2026 · All rights reserved
+        </p>
+      </div>
+
+      {/* Bottom line */}
+      <div
+        className={`absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-700/40 to-transparent transition-opacity duration-1000 delay-500 ${mounted ? "opacity-100" : "opacity-0"}`}
+      />
+    </main>
   );
 }
