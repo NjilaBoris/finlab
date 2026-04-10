@@ -50,7 +50,7 @@ export default function ComingSoonPage() {
         >
           <div className="h-px w-10 bg-amber-600/60" />
           <span className="text-xs tracking-[0.35em] uppercase text-amber-600/80 font-semibold">
-            Something extraordinary
+            Cameroon Fintech Lab 
           </span>
           <div className="h-px w-10 bg-amber-600/60" />
         </div>
@@ -75,8 +75,7 @@ export default function ComingSoonPage() {
         <p
           className={`text-amber-100/40 text-base md:text-lg max-w-md leading-relaxed mb-16 font-light transition-all duration-700 delay-[400ms] ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
         >
-          We're crafting something that will change the way you experience the
-          world. Be the first to know when we launch.
+          Advancing Financial innovation in Cameroon and CEMAC.
         </p>
 
         {/* Countdown */}
